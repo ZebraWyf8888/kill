@@ -30,6 +30,7 @@ public class BaseController {
     public String welcome(String name, ModelMap modelMap) {
         if (StringUtils.isEmpty(name)) {
             name = "这是welcome";
+            name += "已经上线的新功能1";
         }
         modelMap.put("name", name);
         return "welcome";
