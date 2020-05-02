@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.debug.kill.model.mapper.ItemKillMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.debug.kill.model.entity.ItemKill">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="item_id" property="itemId" jdbcType="INTEGER"/>
+        <result column="total" property="total" jdbcType="INTEGER"/>
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="is_active" property="isActive" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, item_id, total, start_time, end_time, is_active, create_time
+    </sql>
+
+    <update id="updateKillItem">
+      UPDATE item_kill SET total = total-1 WHERE id = #{killId};
+    </update>
+    <update id="updateKillItemV2"></update>
+
+    <!--查询待秒杀商品-->
+    <select id="selectAll" resultMap="BaseResultMap">
+    SELECT
+        t1.*,
+        t2.`name` AS itemName ,
+        (
+            CASE WHEN (now()	BETWEEN t1.start_time AND t1.end_time AND t1.total>0)
+            THEN 1
+            ELSE 0
+            END
+        ) AS canKill
+    FROM
+        item_kill AS t1
+        LEFT JOIN item AS t2 ON t2.id = t1.item_id
+    WHERE
+        t1.is_active = 1;
+    </select>
+
+
+    <select id="selectByIdV2" resultType="com.debug.kill.model.entity.ItemKill"></select>
+    <select id="getDetail" resultMap="BaseResultMap">
+     SELECT
+        t1.*,
+        t2.`name` AS itemName ,
+        (
+            CASE WHEN (now()	BETWEEN t1.start_time AND t1.end_time AND t1.total>0)
+            THEN 1
+            ELSE 0
+            END
+        ) AS canKill
+    FROM
+        item_kill AS t1
+        LEFT JOIN item AS t2 ON t2.id = t1.item_id
+    WHERE
+        t1.is_active = 1
+    AND t1.id = #{id};
+
+    </select>
+</mapper>
