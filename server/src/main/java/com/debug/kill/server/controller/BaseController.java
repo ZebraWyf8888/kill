@@ -63,7 +63,7 @@ public class BaseController {
     public BaseResponse response(String name){
         BaseResponse baseResponse = new BaseResponse<>(StatusCode.Success);
         if (StringUtils.isEmpty(name)) {
-            name = "这是欢迎页面";
+            name = "这是欢迎页面,欢迎你";
         }
         baseResponse.setData(name);
         return baseResponse;
