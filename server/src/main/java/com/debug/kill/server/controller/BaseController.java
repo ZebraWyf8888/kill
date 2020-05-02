@@ -46,7 +46,7 @@ public class BaseController {
     @ResponseBody
     public String data(String name){
         if (StringUtils.isEmpty(name)) {
-            name = "这是welcome页面";
+            name = "这是welcome页面，我进行了修改";
         }
         return name;
     }
