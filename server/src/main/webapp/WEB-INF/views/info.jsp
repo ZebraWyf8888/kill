@@ -55,10 +55,10 @@
 
             success: function(res){
                 if (res.code==0) {
-                    //alert(res.msg);
+                    alert(res.msg);
                     window.location.href="${ctx}/kill/execute/success"
                 }else{
-                    //alert(res.msg);
+                    alert(res.msg);
                     window.location.href="${ctx}/kill/execute/fail"
                 }
             },
@@ -76,7 +76,8 @@
             "userId":1
         };*/
         var data = {
-            "killId":killId
+            "killId":killId,
+            "userId":5
         };
         return data;
     }

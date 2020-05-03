@@ -36,7 +36,11 @@ public class KillService implements IKillService {
                     commRecordKillSuccessInfo(detail,uId);
                     return true;
                 }
+            }else {
+                throw new Exception("当前商品不能秒杀");
             }
+        }else{
+            throw new Exception("您已经抢购过了");
         }
         return result;
     }

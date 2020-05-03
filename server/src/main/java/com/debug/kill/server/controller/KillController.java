@@ -64,4 +64,14 @@ public class KillController {
         }
         return response;
     }
+
+    @GetMapping(prefix+"/execute/success")
+    public String toSuccess(){
+        return "executeSuccess";
+    }
+
+    @GetMapping(prefix+"/execute/fail")
+    public String toFail(){
+        return "executeFail";
+    }
 }

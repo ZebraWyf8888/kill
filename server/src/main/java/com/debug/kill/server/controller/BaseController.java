@@ -29,8 +29,7 @@ public class BaseController {
     @GetMapping("/welcome")
     public String welcome(String name, ModelMap modelMap) {
         if (StringUtils.isEmpty(name)) {
-            name = "这是welcome";
-            name += "已经上线的新功能1";
+            name = "这是welcome页面";
         }
         modelMap.put("name", name);
         return "welcome";
@@ -47,7 +46,7 @@ public class BaseController {
     @ResponseBody
     public String data(String name){
         if (StringUtils.isEmpty(name)) {
-            name = "这是welcome页面";
+            name = "这是返回ResponseBody";
         }
         return name;
     }
@@ -64,7 +63,7 @@ public class BaseController {
     public BaseResponse response(String name){
         BaseResponse baseResponse = new BaseResponse<>(StatusCode.Success);
         if (StringUtils.isEmpty(name)) {
-            name = "这是欢迎页面";
+            name = "这是返回标准JSON";
         }
         baseResponse.setData(name);
         return baseResponse;
