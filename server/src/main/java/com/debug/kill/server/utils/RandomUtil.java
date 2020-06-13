@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
+ * 旧版
  * 随机数生成util
  * @Author:debug (SteadyJack)
  * @Date: 2019/6/20 21:05
@@ -24,7 +25,7 @@ public class RandomUtil {
      * @return
      */
     public static String generateOrderCode(){
-        //TODO:时间戳+N为随机数流水号
+        //时间戳+N为随机数流水号
         return dateFormatOne.format(DateTime.now().toDate()) + generateNumber(4);
     }
 
