@@ -15,7 +15,7 @@ import java.io.Serializable;
  **/
 @Data
 @ToString
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 public class MailDto implements Serializable{
     //邮件主题
